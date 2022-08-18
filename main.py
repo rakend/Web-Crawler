@@ -50,6 +50,7 @@ def process_report(statistics):
 def main():
     statistics = []
     root_path = os.path.dirname(os.path.realpath(__file__))
+    main_logger.debug('root path has been set')
     csv_path = os.path.join(root_path, config.csv_file_name)
     with open(csv_path) as csv_file, browser_manager.chrome_manager() as chrome_handler:
         csvReader = csv.DictReader(csv_file)
