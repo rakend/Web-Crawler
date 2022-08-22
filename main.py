@@ -48,37 +48,37 @@ def process_report(statistics):
     report.make_report()
 
 def main():
-    main_logger.debug('start of program')
+    main_logger.debug(f"start of program")
     statistics = []
-    main_logger.info('statistics has been set to empty list')
+    main_logger.info(f"statistics has been set to empty list")
     root_path = os.path.dirname(os.path.realpath(__file__))
     csv_path = os.path.join(root_path, config.csv_file_name)
-    main_logger.info('csv path has been set')
+    main_logger.info(f"csv path has been set")
     with open(csv_path) as csv_file, browser_manager.chrome_manager() as chrome_handler:
         csvReader = csv.DictReader(csv_file)
-        main_logger.info('opened csv file')
+        main_logger.info(f"opened csv file")
         web_list = [dict(row) for row in csvReader]
-        main_logger.debug('csv file contents stored in web_list as a list of dictionaries')
+        main_logger.debug(f"csv file contents stored in web_list as a list of dictionaries")
         chrome_driver = chrome_handler.get_chrome_driver()
-        main_logger.info('chrome_driver has been set')
+        main_logger.info(f"chrome_driver has been set")
         print()
         print('Read and loop through csv')
         for row in web_list:
             if not row['url'] or not row['url_xpath']:
-                main_logger.warning('url or url_xpath not found in web_list')
-                main_logger.info('skipped current row in web_list')
+                main_logger.warning(f"url or url_xpath not found in web_list")
+                main_logger.warning(f"skipped current row in web_list")
                 continue
             print()
             print(f"Processing product listing page (plp) : '{row['url']}'")
             main_logger.info(f"row value set to : {row}")
             product_listing_page_info = make_tuple(row['url'], row['url_xpath'], row['load_more_products'], row['plp_download_number'])
             chrome_driver_info = make_tuple(chrome_driver)
-            main_logger.debug('made a tuple of product_listing_page_info and chrome_driver info')
+            main_logger.debug(f"made a tuple of product_listing_page_info and chrome_driver info")
             product_links, product_listing_page_source = process_product_listing_page(product_listing_page_info, chrome_driver_info)
             main_logger.info(f"{process_product_listing_page} has returned values")
             product_listing_page_info = make_tuple(row['url'], product_listing_page_source)
             product_page_info = make_tuple(product_links, row['review_xpath_1'], row['review_xpath_2'], row['review_xpath_3'])
-            main_logger.debug('made tuple of product_listing_page_info and product_page_info')
+            main_logger.debug(f"made tuple of product_listing_page_info and product_page_info")
             product_page_save_location, status = process_product_listing_page_source_and_product_links(
                 product_listing_page_info, product_page_info, chrome_driver_info)
             main_logger.info(f"{process_product_listing_page_source_and_product_links} has returned values")
@@ -87,13 +87,13 @@ def main():
             if config.ftp_allow_upload and product_page_save_location:
                 ftp = ftp_uploader.upload_via_ftp(config.ftp_server, config.ftp_user, config.ftp_password)
                 ftp.upload_files_to_server(product_page_save_location, status['domain_name'], status['category_name'])
-                main_logger.info('uploading files to server has been completed')
+                main_logger.info(f"uploading files to server has been completed")
         print('Loop through CSV file completed')
-        main_logger.info('loop through CSV file completed')
+        main_logger.info(f"loop through CSV file completed")
         process_report(statistics)
         print('Report has been generated')
-        main_logger.info('Report has been generated')
-        main_logger.debug('end of program')
+        main_logger.info(f"Report has been generated")
+        main_logger.debug(f"end of program")
 
 if __name__ == "__main__":
     main()

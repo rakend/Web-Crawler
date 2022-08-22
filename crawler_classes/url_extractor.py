@@ -55,7 +55,7 @@ class extract_source_links_and_html:
             )
         except:
             elements = []
-            url_extractor_logger.debug(f"Could not find the hyperlink element (<a>) with xpath : {self.xpath}")
+            url_extractor_logger.warning(f"Could not find product link xpath : {self.xpath}")
         finally:
             return elements
 
@@ -86,17 +86,19 @@ class extract_source_links_and_html:
     def get_links_and_html(self):
         try:
             self.open_source_link()
-            url_extractor_logger.info(f"source link : {self.source_link} has been opened")
+            url_extractor_logger.info(f"source link : {self.source_link} has been opened from method : '{self.open_source_link.__qualname__}'")
             self.end_of_page()
-            url_extractor_logger.info(f"{self.end_of_page} has been called")
+            url_extractor_logger.info(f"method : '{self.end_of_page.__qualname__}' has been called")
             elements = self.get_elements()
-            url_extractor_logger.info(f"anchor tag (<a>) elements have been returned from {self.get_elements}")
+            url_extractor_logger.info(f"product link elements have been returned from method : '{self.get_elements.__qualname__}'")
             product_links = self.get_links_from_elements(elements)
-            url_extractor_logger.info(f"product_links have been returned from {self.get_links_from_elements}")
+            url_extractor_logger.info(f"product_links have been returned from method : '{self.get_links_from_elements.__qualname__}'")
             product_links = self.get_links_to_download(product_links)
-            url_extractor_logger.info(f"product_links have been limited to plp_download_number : {self.plp_download_number} from {self.get_links_to_download}")
+            url_extractor_logger.info(
+                f"product_links have been limited to plp_download_number : '{self.plp_download_number}' from method : '{self.get_links_to_download.__qualname__}'"
+            )
             source_html = self.get_page_source()
-            url_extractor_logger.info(f"source link page source has been returned from {self.get_page_source}")
+            url_extractor_logger.info(f"source link page source has been returned from method : '{self.get_page_source.__qualname__}'")
             return product_links, source_html
         except Exception as exception:
             print(exception)

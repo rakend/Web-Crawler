@@ -49,7 +49,7 @@ class extract_page_html:
                 review_element.click()
                 get_libraries.time.sleep(self.delay)
             except:
-                product_page_extractor_logger.warning(f"could not find product page xpath : {xpath}")
+                product_page_extractor_logger.warning(f"could not find product page review xpath : {xpath}")
 
     def get_page_source(self):
         html = self.chrome_driver.page_source
@@ -94,17 +94,17 @@ class extract_page_html:
 
     def get_html(self):
         self.open_product_link()
-        product_page_extractor_logger.info(f"product link has been opened from {self.open_product_link}")
+        product_page_extractor_logger.info(f"product link has been opened from method : '{self.open_product_link.__qualname__}'")
         self.scroll_to_end_of_page()
-        product_page_extractor_logger.info(f"{self.scroll_to_end_of_page} has been called")
+        product_page_extractor_logger.info(f"method : '{self.scroll_to_end_of_page.__qualname__}' has been called")
         self.click_review_xpath(self.review_xpath_1)
-        product_page_extractor_logger.info(f"{self.click_review_xpath} has been called for review_xpath_1 : {self.review_xpath_1}")
+        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' has been called for review_xpath_1 : {self.review_xpath_1}")
         self.click_review_xpath(self.review_xpath_2)
-        product_page_extractor_logger.info(f"{self.click_review_xpath} has been called for review_xpath_2 : {self.review_xpath_2}")
+        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' has been called for review_xpath_2 : {self.review_xpath_2}")
         self.click_review_xpath(self.review_xpath_3)
-        product_page_extractor_logger.info(f"{self.click_review_xpath} has been called for review_xpath_3 : {self.review_xpath_3}")
+        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' has been called for review_xpath_3 : {self.review_xpath_3}")
         html = self.get_page_source()
-        product_page_extractor_logger.info(f"product page source has been set from {self.get_page_source}")
+        product_page_extractor_logger.info(f"product page source has been set from method : '{self.get_page_source.__qualname__}'")
         html = self.process_ozbargain_product(html)
-        product_page_extractor_logger.info(f"if ozbargain product page then source has been set from {self.process_ozbargain_product}")
+        product_page_extractor_logger.info(f"ozbargain product page source has been set from method : '{self.process_ozbargain_product.__qualname__}'")
         return html

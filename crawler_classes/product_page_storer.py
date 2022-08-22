@@ -320,33 +320,33 @@ class store_product_pages:
                         review_xpath_2, review_xpath_3, chrome_driver):
         try:
             self.set_domain_name(product_listing_page_link)
-            product_page_storer_logger.info(f"domain name set to : {self.domain_name} from {self.set_domain_name}")
+            product_page_storer_logger.info(f"domain name set to : '{self.domain_name}' from method : '{self.set_domain_name.__qualname__}'")
             self.set_category_name(product_listing_page_link)
-            product_page_storer_logger.info(f"category name set to : {self.category_name} from {self.set_category_name}")
+            product_page_storer_logger.info(f"category name set to : '{self.category_name}' from method : '{self.set_category_name.__qualname__}'")
             self.set_review_xpath(review_xpath_1, review_xpath_2, review_xpath_3)
             product_page_storer_logger.info(
-                f"review xpath has been set to : {self.review_xpath_1}, {self.review_xpath_2}, {self.review_xpath_3} from {self.set_review_xpath}"
+                f"review xpath has been set to : '{self.review_xpath_1}', '{self.review_xpath_2}', '{self.review_xpath_3}' from method : '{self.set_review_xpath.__qualname__}'"
             )
             self.set_html_base_tag(product_listing_page_link)
-            product_page_storer_logger.info(f"html base tag set to : {self.html_base_tag} from {self.set_html_base_tag}")
+            product_page_storer_logger.info(f"html base tag set to : '{self.html_base_tag}' from method : '{self.set_html_base_tag.__qualname__}'")
             self.set_chrome_driver(chrome_driver)
-            product_page_storer_logger.info(f"chrome_driver has been set from {self.set_chrome_driver}")
+            product_page_storer_logger.info(f"chrome_driver has been set from method : '{self.set_chrome_driver.__qualname__}'")
             self.set_request_header()
-            product_page_storer_logger.info(f"request header has been set from {self.set_request_header}")
+            product_page_storer_logger.info(f"request header has been set from method : '{self.set_request_header.__qualname__}'")
             plp_flag = self.check_url_status_code(product_listing_page_link)
             if not plp_flag:
-                product_page_storer_logger.info(f"product listing page http status code failed from {self.check_url_status_code}")
+                product_page_storer_logger.info(f"product listing page http status code failed from method : '{self.check_url_status_code.__qualname__}'")
                 return self.product_page_save_location
             self.set_product_page_save_location()
             print(f"Product page save location set at : '{self.product_page_save_location}'")
             product_page_storer_logger.info(
-                f"product page save location set at : {self.product_page_save_location} from {self.set_product_page_save_location}"
+                f"product page save location set at : '{self.product_page_save_location}' from method : '{self.set_product_page_save_location.__qualname__}'"
             )
             self.delay_console_display()
             self.save_product_listing_page_file(product_listing_page_source)
             print(f"Source HTML saved as : '{self.source_file_name}'")
             product_page_storer_logger.info(
-                f"Product listing page saved as : {self.source_file_name} from {self.save_product_listing_page_file}"
+                f"Product listing page saved as : '{self.source_file_name}' from method : '{self.save_product_listing_page_file.__qualname__}'"
             )
             print()
             self.delay_console_display()
@@ -359,13 +359,13 @@ class store_product_pages:
                 product_link_flag = self.check_url_status_code(product_link)
                 if not product_link_flag:
                     self.status['failed_pages'] = str(int(self.status['failed_pages']) + 1)
-                    product_page_storer_logger.info(f"product page http status code failed from {self.check_url_status_code}")
+                    product_page_storer_logger.info(f"product page http status code failed from method : '{self.check_url_status_code.__qualname__}'")
                     continue
                 try:
                     print(f"Fetching data from website : '{product_link}'")
                     # self.save_product_file(product_link)
                     self.save_product_file_2(product_link)
-                    product_page_storer_logger.info(f"product page saved from {self.save_product_file_2}")
+                    product_page_storer_logger.info(f"product page saved from method : '{self.save_product_file_2.__qualname__}'")
                 except Exception as exception:
                     self.status['failed_pages'] = str(int(self.status['failed_pages']) + 1)
                     print('Fetching data failed')
@@ -381,7 +381,7 @@ class store_product_pages:
             self.save_specials_file()
             self.delay_console_display()
             print(f"specials html saved as : '{self.specials_file_name}'")
-            product_page_storer_logger.info(f"specials html saved as : {self.specials_file_name} from {self.save_specials_file}")
+            product_page_storer_logger.info(f"specials html saved as : '{self.specials_file_name}' from method : '{self.save_specials_file.__qualname__}'")
             print()
         except Exception as exception:
             print(exception)

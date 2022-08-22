@@ -161,12 +161,12 @@ class generate_report:
 
     def make_report(self):
         self.set_statistics_html()
-        report_generator_logger.info(f"statistics html has been set from {self.set_statistics_html}")
+        report_generator_logger.info(f"statistics html has been set from method : '{self.set_statistics_html.__qualname__}'")
         self.set_report_html()
-        report_generator_logger.info(f"report html has been set from {self.set_report_html}")
+        report_generator_logger.info(f"report html has been set from method : '{self.set_report_html.__qualname__}'")
         self.prettify_report_html()
-        report_generator_logger.info(f"prettified report html from {self.prettify_report_html}")
+        report_generator_logger.info(f"prettified report html from method : '{self.prettify_report_html.__qualname__}'")
         self.set_report_save_location()
-        report_generator_logger.info(f"report save location has been set from {self.set_report_save_location}")
+        report_generator_logger.info(f"report save location has been set from method : '{self.set_report_save_location.__qualname__}'")
         self.create_report_file()
-        report_generator_logger.info(f"report file has been created from {self.create_report_file}")
+        report_generator_logger.info(f"report file has been created from method : '{self.create_report_file.__qualname__}'")
