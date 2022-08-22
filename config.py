@@ -24,7 +24,7 @@ source_file_name = 'sales-original-source.html'
 find_cheap_url = 'http://savedwebsites.findcheap.com.au/'
 
 # ftp login details
-ftp_server = '192.168.20.28'
+ftp_server = '192.168.20.75'
 ftp_user = 'savedwebsites@findcheap.com.au'
 ftp_password = '12345'
 

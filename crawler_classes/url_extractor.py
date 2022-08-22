@@ -1,4 +1,7 @@
+from config import log
 from crawler_classes import get_libraries
+
+url_extractor_logger = log.get_logger(__name__)
 
 '''
 # firefox and edge not working at the moment
@@ -52,7 +55,7 @@ class extract_source_links_and_html:
             )
         except:
             elements = []
-            # print("Could not find the hyperlink element (<a>) with xpath : " + self.xpath)
+            url_extractor_logger.debug(f"Could not find the hyperlink element (<a>) with xpath : {self.xpath}")
         finally:
             return elements
 
@@ -83,12 +86,19 @@ class extract_source_links_and_html:
     def get_links_and_html(self):
         try:
             self.open_source_link()
+            url_extractor_logger.info(f"source link : {self.source_link} has been opened")
             self.end_of_page()
+            url_extractor_logger.info(f"{self.end_of_page} has been called")
             elements = self.get_elements()
+            url_extractor_logger.info(f"anchor tag (<a>) elements have been returned from {self.get_elements}")
             product_links = self.get_links_from_elements(elements)
+            url_extractor_logger.info(f"product_links have been returned from {self.get_links_from_elements}")
             product_links = self.get_links_to_download(product_links)
+            url_extractor_logger.info(f"product_links have been limited to plp_download_number : {self.plp_download_number} from {self.get_links_to_download}")
             source_html = self.get_page_source()
+            url_extractor_logger.info(f"source link page source has been returned from {self.get_page_source}")
             return product_links, source_html
         except Exception as exception:
             print(exception)
+            url_extractor_logger.exception(exception)
             return (None, None)

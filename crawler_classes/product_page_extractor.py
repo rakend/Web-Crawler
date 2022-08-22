@@ -1,4 +1,7 @@
+from config import log
 from crawler_classes import get_libraries
+
+product_page_extractor_logger = log.get_logger(__name__)
 
 class extract_page_html:
 
@@ -46,8 +49,7 @@ class extract_page_html:
                 review_element.click()
                 get_libraries.time.sleep(self.delay)
             except:
-                xpath_not_found = "Could not find xpath : " + xpath
-                # print(xpath_not_found)
+                product_page_extractor_logger.warning(f"could not find product page xpath : {xpath}")
 
     def get_page_source(self):
         html = self.chrome_driver.page_source
@@ -92,10 +94,17 @@ class extract_page_html:
 
     def get_html(self):
         self.open_product_link()
+        product_page_extractor_logger.info(f"product link has been opened from {self.open_product_link}")
         self.scroll_to_end_of_page()
+        product_page_extractor_logger.info(f"{self.scroll_to_end_of_page} has been called")
         self.click_review_xpath(self.review_xpath_1)
+        product_page_extractor_logger.info(f"{self.click_review_xpath} has been called for review_xpath_1 : {self.review_xpath_1}")
         self.click_review_xpath(self.review_xpath_2)
+        product_page_extractor_logger.info(f"{self.click_review_xpath} has been called for review_xpath_2 : {self.review_xpath_2}")
         self.click_review_xpath(self.review_xpath_3)
+        product_page_extractor_logger.info(f"{self.click_review_xpath} has been called for review_xpath_3 : {self.review_xpath_3}")
         html = self.get_page_source()
+        product_page_extractor_logger.info(f"product page source has been set from {self.get_page_source}")
         html = self.process_ozbargain_product(html)
+        product_page_extractor_logger.info(f"if ozbargain product page then source has been set from {self.process_ozbargain_product}")
         return html

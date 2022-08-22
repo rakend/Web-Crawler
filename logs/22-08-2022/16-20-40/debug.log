@@ -1,0 +1,165 @@
+2022-08-22 16:20:41,055 - __main__ - DEBUG - start of program
+2022-08-22 16:20:41,055 - __main__ - INFO - statistics has been set to empty list
+2022-08-22 16:20:41,055 - __main__ - INFO - csv path has been set
+2022-08-22 16:20:55,925 - __main__ - INFO - opened csv file
+2022-08-22 16:20:55,925 - __main__ - DEBUG - csv file contents stored in web_list as a list of dictionaries
+2022-08-22 16:20:55,925 - __main__ - INFO - chrome_driver has been set
+2022-08-22 16:20:55,925 - __main__ - INFO - row value set to : {'url': 'https://www.nike.com/au/w/mens-sale-shoes-3yaepz4i4r4znik1zy7ok', 'url_xpath': "//a[@class='product-card__link-overlay']", 'load_more_products': '0', 'plp_download_number': '2', 'review_xpath_1': "//summary[@class='css-ov1ktg'](1)", 'review_xpath_2': "//label[@class='css-15juft3'](1)", 'review_xpath_3': "//span[@class='TT3ShowMoreText' and text()='Load More'](2)"}
+2022-08-22 16:20:55,925 - __main__ - DEBUG - made a tuple of product_listing_page_info and chrome_driver info
+2022-08-22 16:21:15,249 - crawler_classes.url_extractor - INFO - source link : https://www.nike.com/au/w/mens-sale-shoes-3yaepz4i4r4znik1zy7ok has been opened
+2022-08-22 16:21:15,255 - crawler_classes.url_extractor - INFO - <bound method extract_source_links_and_html.end_of_page of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278FF1F6290>> has been called
+2022-08-22 16:21:15,264 - crawler_classes.url_extractor - INFO - anchor tag (<a>) elements have been returned from <bound method extract_source_links_and_html.get_elements of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278FF1F6290>>
+2022-08-22 16:21:15,483 - crawler_classes.url_extractor - INFO - product_links have been returned from <bound method extract_source_links_and_html.get_links_from_elements of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278FF1F6290>>
+2022-08-22 16:21:15,483 - crawler_classes.url_extractor - INFO - product_links have been limited to plp_download_number : 2 from <bound method extract_source_links_and_html.get_links_to_download of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,547 - crawler_classes.url_extractor - INFO - source link page source has been returned from <bound method extract_source_links_and_html.get_page_source of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,547 - __main__ - INFO - <function process_product_listing_page at 0x00000278FF1DA5F0> has returned values
+2022-08-22 16:21:20,547 - __main__ - DEBUG - made tuple of product_listing_page_info and product_page_info
+2022-08-22 16:21:20,556 - crawler_classes.product_page_storer - INFO - domain name set to : nike from <bound method store_product_pages.set_domain_name of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,557 - crawler_classes.product_page_storer - INFO - category name set to : mens-sale-shoes-3yaepz4i4r4znik1zy7ok from <bound method store_product_pages.set_category_name of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,557 - crawler_classes.product_page_storer - INFO - review xpath has been set to : //summary[@class='css-ov1ktg'](1), //label[@class='css-15juft3'](1), //span[@class='TT3ShowMoreText' and text()='Load More'](2) from <bound method store_product_pages.set_review_xpath of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,557 - crawler_classes.product_page_storer - INFO - html base tag set to : <base href="https://www.nike.com"/> from <bound method store_product_pages.set_html_base_tag of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,557 - crawler_classes.product_page_storer - INFO - chrome_driver has been set from <bound method store_product_pages.set_chrome_driver of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:20,563 - crawler_classes.product_page_storer - INFO - request header has been set from <bound method store_product_pages.set_request_header of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:22,265 - crawler_classes.product_page_storer - INFO - product page save location set at : C:\python-selenium\Web Crawler\savedwebsites\nike\mens-sale-shoes-3yaepz4i4r4znik1zy7ok from <bound method store_product_pages.set_product_page_save_location of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:23,402 - crawler_classes.product_page_storer - INFO - Product listing page saved as : sales-original-source.html from <bound method store_product_pages.save_product_listing_page_file of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:21:44,222 - crawler_classes.product_page_extractor - INFO - product link has been opened from <bound method extract_page_html.open_product_link of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>>
+2022-08-22 16:21:49,231 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.scroll_to_end_of_page of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>> has been called
+2022-08-22 16:22:04,346 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>> has been called for review_xpath_1 : //summary[@class='css-ov1ktg'](1)
+2022-08-22 16:22:19,459 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>> has been called for review_xpath_2 : //label[@class='css-15juft3'](1)
+2022-08-22 16:22:54,876 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //span[@class='TT3ShowMoreText' and text()='Load More']
+2022-08-22 16:22:54,876 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>> has been called for review_xpath_3 : //span[@class='TT3ShowMoreText' and text()='Load More'](2)
+2022-08-22 16:22:59,939 - crawler_classes.product_page_extractor - INFO - product page source has been set from <bound method extract_page_html.get_page_source of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>>
+2022-08-22 16:22:59,939 - crawler_classes.product_page_extractor - INFO - if ozbargain product page then source has been set from <bound method extract_page_html.process_ozbargain_product of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD300>>
+2022-08-22 16:23:00,142 - crawler_classes.product_page_storer - INFO - product page saved from <bound method store_product_pages.save_product_file_2 of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:23:15,913 - crawler_classes.product_page_extractor - INFO - product link has been opened from <bound method extract_page_html.open_product_link of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>>
+2022-08-22 16:23:20,923 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.scroll_to_end_of_page of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>> has been called
+2022-08-22 16:23:36,041 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>> has been called for review_xpath_1 : //summary[@class='css-ov1ktg'](1)
+2022-08-22 16:23:51,133 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>> has been called for review_xpath_2 : //label[@class='css-15juft3'](1)
+2022-08-22 16:24:01,666 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //span[@class='TT3ShowMoreText' and text()='Load More']
+2022-08-22 16:24:12,180 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //span[@class='TT3ShowMoreText' and text()='Load More']
+2022-08-22 16:24:12,180 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>> has been called for review_xpath_3 : //span[@class='TT3ShowMoreText' and text()='Load More'](2)
+2022-08-22 16:24:17,238 - crawler_classes.product_page_extractor - INFO - product page source has been set from <bound method extract_page_html.get_page_source of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>>
+2022-08-22 16:24:17,238 - crawler_classes.product_page_extractor - INFO - if ozbargain product page then source has been set from <bound method extract_page_html.process_ozbargain_product of <crawler_classes.product_page_extractor.extract_page_html object at 0x00000278FFEDD420>>
+2022-08-22 16:24:17,368 - crawler_classes.product_page_storer - INFO - product page saved from <bound method store_product_pages.save_product_file_2 of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,371 - crawler_classes.product_page_storer - INFO - specials html saved as : specials.html from <bound method store_product_pages.save_specials_file of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,371 - __main__ - INFO - <function process_product_listing_page_source_and_product_links at 0x00000278FF208CA0> has returned values
+2022-08-22 16:24:20,371 - __main__ - INFO - status : {'domain_name': 'nike', 'category_name': 'mens-sale-shoes-3yaepz4i4r4znik1zy7ok', 'plp_status_code': '200', 'total_pages': '2', 'new_pages': '2', 'updated_pages': '0', 'failed_pages': '0'} has been appended to statistics
+2022-08-22 16:24:20,429 - ftp_classes.ftp_uploader - INFO - started ftp host connection from <bound method upload_via_ftp.start_ftp_host_connection of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,439 - ftp_classes.ftp_uploader - INFO - ftp host save location has been set from <bound method upload_via_ftp.set_ftp_host_save_location of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,439 - ftp_classes.ftp_uploader - INFO - system paths of local html files to upload have been set from <bound method upload_via_ftp.get_html_file_paths of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,723 - ftp_classes.ftp_uploader - INFO - uploaded files to private server from <bound method upload_via_ftp.save_files_to_server of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,723 - ftp_classes.ftp_uploader - INFO - ended ftp host connection from <bound method upload_via_ftp.end_ftp_host_connection of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FF1F6290>>
+2022-08-22 16:24:20,723 - __main__ - INFO - uploading files to server has been completed
+2022-08-22 16:24:20,723 - __main__ - INFO - row value set to : {'url': 'https://www.groupon.com.au/coupons?topcategory=travel&category=tour-travel', 'url_xpath': "//div[@class='cui-content']/a[1]", 'load_more_products': '0', 'plp_download_number': '1', 'review_xpath_1': "//a[@class='all-tips-link'](1)", 'review_xpath_2': '', 'review_xpath_3': ''}
+2022-08-22 16:24:20,724 - __main__ - DEBUG - made a tuple of product_listing_page_info and chrome_driver info
+2022-08-22 16:24:30,110 - crawler_classes.url_extractor - INFO - source link : https://www.groupon.com.au/coupons?topcategory=travel&category=tour-travel has been opened
+2022-08-22 16:24:30,115 - crawler_classes.url_extractor - INFO - <bound method extract_source_links_and_html.end_of_page of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x0000027880706D70>> has been called
+2022-08-22 16:24:30,125 - crawler_classes.url_extractor - INFO - anchor tag (<a>) elements have been returned from <bound method extract_source_links_and_html.get_elements of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x0000027880706D70>>
+2022-08-22 16:24:30,375 - crawler_classes.url_extractor - INFO - product_links have been returned from <bound method extract_source_links_and_html.get_links_from_elements of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x0000027880706D70>>
+2022-08-22 16:24:30,375 - crawler_classes.url_extractor - INFO - product_links have been limited to plp_download_number : 1 from <bound method extract_source_links_and_html.get_links_to_download of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x0000027880706D70>>
+2022-08-22 16:24:35,402 - crawler_classes.url_extractor - INFO - source link page source has been returned from <bound method extract_source_links_and_html.get_page_source of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x0000027880706D70>>
+2022-08-22 16:24:35,403 - __main__ - INFO - <function process_product_listing_page at 0x00000278FF1DA5F0> has returned values
+2022-08-22 16:24:35,403 - __main__ - DEBUG - made tuple of product_listing_page_info and product_page_info
+2022-08-22 16:24:35,403 - crawler_classes.product_page_storer - INFO - domain name set to : groupon from <bound method store_product_pages.set_domain_name of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:35,403 - crawler_classes.product_page_storer - INFO - category name set to : coupons from <bound method store_product_pages.set_category_name of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:35,403 - crawler_classes.product_page_storer - INFO - review xpath has been set to : //a[@class='all-tips-link'](1), ,  from <bound method store_product_pages.set_review_xpath of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:35,403 - crawler_classes.product_page_storer - INFO - html base tag set to : <base href="https://www.groupon.com.au"/> from <bound method store_product_pages.set_html_base_tag of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:35,403 - crawler_classes.product_page_storer - INFO - chrome_driver has been set from <bound method store_product_pages.set_chrome_driver of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:35,408 - crawler_classes.product_page_storer - INFO - request header has been set from <bound method store_product_pages.set_request_header of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:37,298 - crawler_classes.product_page_storer - INFO - product page save location set at : C:\python-selenium\Web Crawler\savedwebsites\groupon\coupons from <bound method store_product_pages.set_product_page_save_location of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:38,404 - crawler_classes.product_page_storer - INFO - Product listing page saved as : sales-original-source.html from <bound method store_product_pages.save_product_listing_page_file of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:24:48,727 - crawler_classes.product_page_extractor - INFO - product link has been opened from <bound method extract_page_html.open_product_link of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>>
+2022-08-22 16:24:53,739 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.scroll_to_end_of_page of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>> has been called
+2022-08-22 16:25:04,789 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //a[@class='all-tips-link']
+2022-08-22 16:25:04,790 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>> has been called for review_xpath_1 : //a[@class='all-tips-link'](1)
+2022-08-22 16:25:04,790 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>> has been called for review_xpath_2 : 
+2022-08-22 16:25:04,790 - crawler_classes.product_page_extractor - INFO - <bound method extract_page_html.click_review_xpath of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>> has been called for review_xpath_3 : 
+2022-08-22 16:25:09,814 - crawler_classes.product_page_extractor - INFO - product page source has been set from <bound method extract_page_html.get_page_source of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>>
+2022-08-22 16:25:09,814 - crawler_classes.product_page_extractor - INFO - if ozbargain product page then source has been set from <bound method extract_page_html.process_ozbargain_product of <crawler_classes.product_page_extractor.extract_page_html object at 0x0000027880706C50>>
+2022-08-22 16:25:09,873 - crawler_classes.product_page_storer - INFO - product page saved from <bound method store_product_pages.save_product_file_2 of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:12,881 - crawler_classes.product_page_storer - INFO - specials html saved as : specials.html from <bound method store_product_pages.save_specials_file of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:12,882 - __main__ - INFO - <function process_product_listing_page_source_and_product_links at 0x00000278FF208CA0> has returned values
+2022-08-22 16:25:12,882 - __main__ - INFO - status : {'domain_name': 'groupon', 'category_name': 'coupons', 'plp_status_code': '200', 'total_pages': '1', 'new_pages': '1', 'updated_pages': '0', 'failed_pages': '0'} has been appended to statistics
+2022-08-22 16:25:12,934 - ftp_classes.ftp_uploader - INFO - started ftp host connection from <bound method upload_via_ftp.start_ftp_host_connection of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:12,941 - ftp_classes.ftp_uploader - INFO - ftp host save location has been set from <bound method upload_via_ftp.set_ftp_host_save_location of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:12,941 - ftp_classes.ftp_uploader - INFO - system paths of local html files to upload have been set from <bound method upload_via_ftp.get_html_file_paths of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:13,516 - ftp_classes.ftp_uploader - INFO - uploaded files to private server from <bound method upload_via_ftp.save_files_to_server of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:13,516 - ftp_classes.ftp_uploader - INFO - ended ftp host connection from <bound method upload_via_ftp.end_ftp_host_connection of <ftp_classes.ftp_uploader.upload_via_ftp object at 0x00000278FFE26EF0>>
+2022-08-22 16:25:13,516 - __main__ - INFO - uploading files to server has been completed
+2022-08-22 16:25:13,516 - __main__ - INFO - row value set to : {'url': 'https://www.curtainwonderland.com.au/categories/curtains/', 'url_xpath': "//div[@class='item']/a", 'load_more_products': '0', 'plp_download_number': '1', 'review_xpath_1': "//*[@id='tablist1-tab7'](1)", 'review_xpath_2': '', 'review_xpath_3': ''}
+2022-08-22 16:25:13,517 - __main__ - DEBUG - made a tuple of product_listing_page_info and chrome_driver info
+2022-08-22 16:25:21,877 - crawler_classes.url_extractor - INFO - source link : https://www.curtainwonderland.com.au/categories/curtains/ has been opened
+2022-08-22 16:25:21,882 - crawler_classes.url_extractor - INFO - <bound method extract_source_links_and_html.end_of_page of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278809995D0>> has been called
+2022-08-22 16:25:21,892 - crawler_classes.url_extractor - INFO - anchor tag (<a>) elements have been returned from <bound method extract_source_links_and_html.get_elements of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278809995D0>>
+2022-08-22 16:25:21,982 - crawler_classes.url_extractor - INFO - product_links have been returned from <bound method extract_source_links_and_html.get_links_from_elements of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278809995D0>>
+2022-08-22 16:25:21,982 - crawler_classes.url_extractor - INFO - product_links have been limited to plp_download_number : 1 from <bound method extract_source_links_and_html.get_links_to_download of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278809995D0>>
+2022-08-22 16:25:26,991 - crawler_classes.url_extractor - INFO - source link page source has been returned from <bound method extract_source_links_and_html.get_page_source of <crawler_classes.url_extractor.extract_source_links_and_html object at 0x00000278809995D0>>
+2022-08-22 16:25:26,991 - __main__ - INFO - <function process_product_listing_page at 0x00000278FF1DA5F0> has returned values
+2022-08-22 16:25:26,991 - __main__ - DEBUG - made tuple of product_listing_page_info and product_page_info
+2022-08-22 16:25:26,992 - crawler_classes.product_page_storer - INFO - domain name set to : curtainwonderland from <bound method store_product_pages.set_domain_name of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278807F26B0>>
+2022-08-22 16:25:26,992 - crawler_classes.product_page_storer - INFO - category name set to : curtains from <bound method store_product_pages.set_category_name of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278807F26B0>>
+2022-08-22 16:25:26,992 - crawler_classes.product_page_storer - INFO - review xpath has been set to : //*[@id='tablist1-tab7'](1), ,  from <bound method store_product_pages.set_review_xpath of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278807F26B0>>
+2022-08-22 16:25:26,992 - crawler_classes.product_page_storer - INFO - html base tag set to : <base href="https://www.curtainwonderland.com.au"/> from <bound method store_product_pages.set_html_base_tag of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278807F26B0>>
+2022-08-22 16:25:26,992 - crawler_classes.product_page_storer - INFO - chrome_driver has been set from <bound method store_product_pages.set_chrome_driver of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278807F26B0>>
+2022-08-22 16:25:26,996 - crawler_classes.product_page_storer - INFO - request header has been set from <bound method store_product_pages.set_request_header of <crawler_classes.product_page_storer.store_product_pages object at 0x00000278807F26B0>>
+2022-08-22 16:25:27,447 - crawler_classes.product_page_storer - ERROR - HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+Traceback (most recent call last):
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Program Files\Python310\Lib\ssl.py", line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Program Files\Python310\Lib\ssl.py", line 1071, in _create
+    self.do_handshake()
+  File "C:\Program Files\Python310\Lib\ssl.py", line 1342, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\python-selenium\Web Crawler\crawler_classes\product_page_storer.py", line 336, in save_html_files
+    plp_flag = self.check_url_status_code(product_listing_page_link)
+  File "C:\python-selenium\Web Crawler\crawler_classes\product_page_storer.py", line 309, in check_url_status_code
+    request = get_libraries.requests.get(url, headers = self.headers)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\adapters.py", line 563, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+2022-08-22 16:25:27,505 - __main__ - INFO - <function process_product_listing_page_source_and_product_links at 0x00000278FF208CA0> has returned values
+2022-08-22 16:25:27,505 - __main__ - INFO - status : {'domain_name': 'curtainwonderland', 'category_name': 'curtains', 'plp_status_code': 'None', 'total_pages': '0', 'new_pages': '0', 'updated_pages': '0', 'failed_pages': '0'} has been appended to statistics
+2022-08-22 16:25:27,505 - __main__ - INFO - loop through CSV file completed
+2022-08-22 16:25:27,505 - report_classes.report_generator - INFO - statistics html has been set from <bound method generate_report.set_statistics_html of <report_classes.report_generator.generate_report object at 0x00000278FF1F4940>>
+2022-08-22 16:25:27,505 - report_classes.report_generator - INFO - report html has been set from <bound method generate_report.set_report_html of <report_classes.report_generator.generate_report object at 0x00000278FF1F4940>>
+2022-08-22 16:25:27,507 - report_classes.report_generator - INFO - prettified report html from <bound method generate_report.prettify_report_html of <report_classes.report_generator.generate_report object at 0x00000278FF1F4940>>
+2022-08-22 16:25:27,508 - report_classes.report_generator - INFO - report save location has been set from <bound method generate_report.set_report_save_location of <report_classes.report_generator.generate_report object at 0x00000278FF1F4940>>
+2022-08-22 16:25:27,509 - report_classes.report_generator - INFO - report file has been created from <bound method generate_report.create_report_file of <report_classes.report_generator.generate_report object at 0x00000278FF1F4940>>
+2022-08-22 16:25:27,509 - __main__ - INFO - Report has been generated
+2022-08-22 16:25:27,509 - __main__ - DEBUG - end of program

@@ -1,0 +1,55 @@
+2022-08-22 16:22:54,876 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //span[@class='TT3ShowMoreText' and text()='Load More']
+2022-08-22 16:24:01,666 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //span[@class='TT3ShowMoreText' and text()='Load More']
+2022-08-22 16:24:12,180 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //span[@class='TT3ShowMoreText' and text()='Load More']
+2022-08-22 16:25:04,789 - crawler_classes.product_page_extractor - WARNING - could not find product page xpath : //a[@class='all-tips-link']
+2022-08-22 16:25:27,447 - crawler_classes.product_page_storer - ERROR - HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+Traceback (most recent call last):
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Program Files\Python310\Lib\ssl.py", line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Program Files\Python310\Lib\ssl.py", line 1071, in _create
+    self.do_handshake()
+  File "C:\Program Files\Python310\Lib\ssl.py", line 1342, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\python-selenium\Web Crawler\crawler_classes\product_page_storer.py", line 336, in save_html_files
+    plp_flag = self.check_url_status_code(product_listing_page_link)
+  File "C:\python-selenium\Web Crawler\crawler_classes\product_page_storer.py", line 309, in check_url_status_code
+    request = get_libraries.requests.get(url, headers = self.headers)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\adapters.py", line 563, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
