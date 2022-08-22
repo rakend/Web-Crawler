@@ -75,13 +75,13 @@ def main():
             chrome_driver_info = make_tuple(chrome_driver)
             main_logger.debug(f"made a tuple of product_listing_page_info and chrome_driver info")
             product_links, product_listing_page_source = process_product_listing_page(product_listing_page_info, chrome_driver_info)
-            main_logger.info(f"{process_product_listing_page} has returned values")
+            main_logger.info(f"{process_product_listing_page.__qualname__} has returned values")
             product_listing_page_info = make_tuple(row['url'], product_listing_page_source)
             product_page_info = make_tuple(product_links, row['review_xpath_1'], row['review_xpath_2'], row['review_xpath_3'])
             main_logger.debug(f"made tuple of product_listing_page_info and product_page_info")
             product_page_save_location, status = process_product_listing_page_source_and_product_links(
                 product_listing_page_info, product_page_info, chrome_driver_info)
-            main_logger.info(f"{process_product_listing_page_source_and_product_links} has returned values")
+            main_logger.info(f"{process_product_listing_page_source_and_product_links.__qualname__} has returned values")
             statistics.append(status)
             main_logger.info(f"status : {status} has been appended to statistics")
             if config.ftp_allow_upload and product_page_save_location:
