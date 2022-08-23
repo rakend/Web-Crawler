@@ -1,5 +1,8 @@
+from config import log
 from crawler_classes import get_libraries
 from crawler_classes import product_page_extractor
+
+product_page_storer_logger = log.get_logger(__name__)
 
 class store_product_pages:
 
@@ -13,7 +16,7 @@ class store_product_pages:
         self.initialize_review_xpath()
         self.initialize_html_base_tag()
         self.initialize_chrome_driver()
-        self.initialize_request_header()
+        self.initialize_request_headers()
         self.initialize_product_page_save_location()
         self.initialize_status()
 
@@ -48,7 +51,7 @@ class store_product_pages:
             'failed_pages': '0'
         }
 
-    def initialize_request_header(self):
+    def initialize_request_headers(self):
         self.headers = {'user-agent': ''}
 
     def get_domain_name(self, url):
@@ -85,7 +88,7 @@ class store_product_pages:
     def set_chrome_driver(self, chrome_driver):
         self.chrome_driver = chrome_driver
 
-    def set_request_header(self):
+    def set_request_headers(self):
         user_agent = self.chrome_driver.execute_script("return navigator.userAgent;")
         self.headers['user-agent'] = user_agent
 
@@ -213,7 +216,7 @@ class store_product_pages:
 
     def get_product_html(self, product_link):
         product_page = product_page_extractor.extract_page_html(product_link, self.review_xpath_1, self.review_xpath_2,
-                                                                self.review_xpath_3, self.chrome_driver)
+                                                                self.review_xpath_3, self.headers, self.chrome_driver)
         product_page_html = product_page.get_html()
         return product_page_html
 
@@ -238,8 +241,9 @@ class store_product_pages:
         self.create_new_html_file(product_path, product_page_html)
         if remove_file_flag:
             self.status['updated_pages'] = str(int(self.status['updated_pages']) + 1)
-            return None
-        self.status['new_pages'] = str(int(self.status['new_pages']) + 1)
+        else:
+            self.status['new_pages'] = str(int(self.status['new_pages']) + 1)
+        return product_link_file_name
 
     def save_product_file(self, product_link):
         product_page_html = self.get_product_html(product_link)
@@ -303,10 +307,11 @@ class store_product_pages:
         get_libraries.time.sleep(console_display_wait_time)
 
     def check_url_status_code(self, url):
-        request = get_libraries.requests.get(url, headers = self.headers)
-        status_code = request.status_code
+        request = get_libraries.requests
+        response = request.get(url, headers = self.headers)
+        status_code = response.status_code
         self.status['plp_status_code'] = str(status_code)
-        if request:
+        if response:
             return True
         return False
 
@@ -317,19 +322,34 @@ class store_product_pages:
                         review_xpath_2, review_xpath_3, chrome_driver):
         try:
             self.set_domain_name(product_listing_page_link)
+            product_page_storer_logger.info(f"domain name set to : '{self.domain_name}' from method : '{self.set_domain_name.__qualname__}'")
             self.set_category_name(product_listing_page_link)
+            product_page_storer_logger.info(f"category name set to : '{self.category_name}' from method : '{self.set_category_name.__qualname__}'")
             self.set_review_xpath(review_xpath_1, review_xpath_2, review_xpath_3)
+            product_page_storer_logger.info(
+                f"review xpath set to : '{self.review_xpath_1}', '{self.review_xpath_2}', '{self.review_xpath_3}' from method : '{self.set_review_xpath.__qualname__}'"
+            )
             self.set_html_base_tag(product_listing_page_link)
+            product_page_storer_logger.info(f"html base tag set to : '{self.html_base_tag}' from method : '{self.set_html_base_tag.__qualname__}'")
             self.set_chrome_driver(chrome_driver)
-            self.set_request_header()
+            product_page_storer_logger.info(f"chrome_driver set from method : '{self.set_chrome_driver.__qualname__}'")
+            self.set_request_headers()
+            product_page_storer_logger.info(f"request header set from method : '{self.set_request_headers.__qualname__}'")
             plp_flag = self.check_url_status_code(product_listing_page_link)
             if not plp_flag:
+                product_page_storer_logger.info(f"product listing page http status code failed from method : '{self.check_url_status_code.__qualname__}'")
                 return self.product_page_save_location
             self.set_product_page_save_location()
-            print(f"Product page save location set at : '{self.product_page_save_location}'")
+            print(f"Product page save location set to : '{self.product_page_save_location}'")
+            product_page_storer_logger.info(
+                f"product page save location set to : '{self.product_page_save_location}' from method : '{self.set_product_page_save_location.__qualname__}'"
+            )
             self.delay_console_display()
             self.save_product_listing_page_file(product_listing_page_source)
             print(f"Source HTML saved as : '{self.source_file_name}'")
+            product_page_storer_logger.info(
+                f"Product listing page saved as : '{self.source_file_name}' from method : '{self.save_product_listing_page_file.__qualname__}'"
+            )
             print()
             self.delay_console_display()
             self.delay_console_display()
@@ -338,31 +358,36 @@ class store_product_pages:
             print()
             self.delay_console_display()
             for product_link in product_links:
+                product_page_storer_logger.debug(f"'product_link' value set to : '{product_link}'")
                 product_link_flag = self.check_url_status_code(product_link)
                 if not product_link_flag:
                     self.status['failed_pages'] = str(int(self.status['failed_pages']) + 1)
+                    product_page_storer_logger.info(f"product page http status code failed from method : '{self.check_url_status_code.__qualname__}'")
                     continue
                 try:
                     print(f"Fetching data from website : '{product_link}'")
                     # self.save_product_file(product_link)
-                    self.save_product_file_2(product_link)
+                    product_link_file_name = self.save_product_file_2(product_link)
+                    product_page_storer_logger.info(f"product page saved as : '{product_link_file_name}' from method : '{self.save_product_file_2.__qualname__}'")
                 except Exception as exception:
-                    # print(exception)
                     self.status['failed_pages'] = str(int(self.status['failed_pages']) + 1)
                     print('Fetching data failed')
+                    product_page_storer_logger.exception(exception)
                 else:
                     print('Fetching data successful')
                     print('Webpage saved locally')
                 finally:
                     print()
-                self.delay_console_display()
+                    self.delay_console_display()
             self.delay_console_display()
             print('Loop thorugh all links completed')
             self.save_specials_file()
             self.delay_console_display()
-            print(f"Specials HTML saved as : '{self.specials_file_name}'")
-            print()
+            print(f"Specials html saved as : '{self.specials_file_name}'")
+            product_page_storer_logger.info(f"specials html saved as : '{self.specials_file_name}' from method : '{self.save_specials_file.__qualname__}'")
         except Exception as exception:
             print(exception)
+            product_page_storer_logger.exception(exception)
         finally:
+            print()
             return self.product_page_save_location

@@ -1,4 +1,7 @@
+from config import log
 from ftp_classes import get_libraries
+
+ftp_uploader_logger = log.get_logger(__name__)
 
 class upload_via_ftp:
 
@@ -25,7 +28,7 @@ class upload_via_ftp:
             ftp_host.mkdir(new_path)
         ftp_host.chdir(new_path)
 
-    def set_ftp_save_location(self, ftp_host, domain_name, category_name):
+    def set_ftp_host_save_location(self, ftp_host, domain_name, category_name):
         ftp_host_domain_path = self.get_new_ftp_host_path(ftp_host, domain_name)
         self.change_ftp_host_path(ftp_host, ftp_host_domain_path)
         ftp_host_category_path = self.get_new_ftp_host_path(ftp_host, category_name)
@@ -36,7 +39,7 @@ class upload_via_ftp:
         directory = get_libraries.os.fsencode(product_page_save_location)
         for file in get_libraries.os.listdir(directory):
             file_name = get_libraries.os.fsdecode(file)
-            if file_name.endswith(".html"):
+            if file_name.endswith('.html'):
                 file_path = get_libraries.os.path.join(product_page_save_location, file_name)
                 html_file_paths.append(file_path)
         return html_file_paths
@@ -53,12 +56,18 @@ class upload_via_ftp:
     def upload_files_to_server(self, product_page_save_location, domain_name, category_name):
         try:
             ftp_host = self.start_ftp_host_connection()
-            self.set_ftp_save_location(ftp_host, domain_name, category_name)
+            ftp_uploader_logger.info(f"started ftp host connection from method : '{self.start_ftp_host_connection.__qualname__}'")
+            self.set_ftp_host_save_location(ftp_host, domain_name, category_name)
+            ftp_uploader_logger.info(f"ftp host save location set from method : '{self.set_ftp_host_save_location.__qualname__}'")
             html_file_paths = self.get_html_file_paths(product_page_save_location)
+            ftp_uploader_logger.info(f"local html files to upload set from method : '{self.get_html_file_paths.__qualname__}'")
             self.save_files_to_server(ftp_host, html_file_paths, domain_name, category_name)
-            self.end_ftp_host_connection(ftp_host)
             print("Successfully uploaded files to private server")
+            ftp_uploader_logger.info(f"saved files to server from method : '{self.save_files_to_server.__qualname__}'")
+            self.end_ftp_host_connection(ftp_host)
+            ftp_uploader_logger.info(f"ended ftp host connection from method : '{self.end_ftp_host_connection.__qualname__}'")
         except Exception as exception:
             print(exception)
+            ftp_uploader_logger.exception(exception)
         finally:
             print()

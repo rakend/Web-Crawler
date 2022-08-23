@@ -1,4 +1,7 @@
+from config import log
 from report_classes import get_libraries
+
+report_generator_logger = log.get_logger(__name__)
 
 class generate_report:
 
@@ -158,7 +161,12 @@ class generate_report:
 
     def make_report(self):
         self.set_statistics_html()
+        report_generator_logger.info(f"statistics html set from method : '{self.set_statistics_html.__qualname__}'")
         self.set_report_html()
+        report_generator_logger.info(f"report html set from method : '{self.set_report_html.__qualname__}'")
         self.prettify_report_html()
+        report_generator_logger.info(f"prettified report html from method : '{self.prettify_report_html.__qualname__}'")
         self.set_report_save_location()
+        report_generator_logger.info(f"report save location set from method : '{self.set_report_save_location.__qualname__}'")
         self.create_report_file()
+        report_generator_logger.info(f"report file created from method : '{self.create_report_file.__qualname__}'")

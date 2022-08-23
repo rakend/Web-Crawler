@@ -1,4 +1,7 @@
+from config import log
 from browser_classes import get_libraries
+
+browser_manager_logger = log.get_logger(__name__)
 
 class chrome_manager:
 

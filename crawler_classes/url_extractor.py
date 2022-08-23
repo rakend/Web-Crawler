@@ -1,13 +1,8 @@
+from config import log
 from crawler_classes import get_libraries
 
-'''
-# firefox and edge not working at the moment
-#firefox_driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
-#ie_driver = webdriver.Ie(service=Service(IEDriverManager().install()))
-#edge_driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
-'''
+url_extractor_logger = log.get_logger(__name__)
 
-# class for chrome browser
 class extract_source_links_and_html:
 
     def __init__(self, source_link, xpath, load_more_products, plp_download_number, chrome_driver):
@@ -52,7 +47,7 @@ class extract_source_links_and_html:
             )
         except:
             elements = []
-            # print("Could not find the hyperlink element (<a>) with xpath : " + self.xpath)
+            url_extractor_logger.warning(f"Could not find product link xpath : {self.xpath}")
         finally:
             return elements
 
@@ -83,12 +78,21 @@ class extract_source_links_and_html:
     def get_links_and_html(self):
         try:
             self.open_source_link()
+            url_extractor_logger.info(f"source link : '{self.source_link}' opened from method : '{self.open_source_link.__qualname__}'")
             self.end_of_page()
+            url_extractor_logger.info(f"scrolled to end of page from method : '{self.end_of_page.__qualname__}'")
             elements = self.get_elements()
+            url_extractor_logger.info(f"product link elements returned from method : '{self.get_elements.__qualname__}'")
             product_links = self.get_links_from_elements(elements)
+            url_extractor_logger.info(f"product links returned from method : '{self.get_links_from_elements.__qualname__}'")
             product_links = self.get_links_to_download(product_links)
+            url_extractor_logger.info(
+                f"product_links sliced to plp_download_number : '{self.plp_download_number}' from method : '{self.get_links_to_download.__qualname__}'"
+            )
             source_html = self.get_page_source()
+            url_extractor_logger.info(f"source link page source returned from method : '{self.get_page_source.__qualname__}'")
             return product_links, source_html
         except Exception as exception:
             print(exception)
+            url_extractor_logger.exception(exception)
             return (None, None)
