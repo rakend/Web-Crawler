@@ -307,10 +307,11 @@ class store_product_pages:
         get_libraries.time.sleep(console_display_wait_time)
 
     def check_url_status_code(self, url):
-        request = get_libraries.requests.get(url, headers = self.headers)
-        status_code = request.status_code
+        request = get_libraries.requests
+        response = request.get(url, headers = self.headers)
+        status_code = response.status_code
         self.status['plp_status_code'] = str(status_code)
-        if request:
+        if response:
             return True
         return False
 
@@ -384,9 +385,9 @@ class store_product_pages:
             self.delay_console_display()
             print(f"Specials html saved as : '{self.specials_file_name}'")
             product_page_storer_logger.info(f"specials html saved as : '{self.specials_file_name}' from method : '{self.save_specials_file.__qualname__}'")
-            print()
         except Exception as exception:
             print(exception)
             product_page_storer_logger.exception(exception)
         finally:
+            print()
             return self.product_page_save_location
