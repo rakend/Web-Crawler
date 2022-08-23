@@ -5,13 +5,14 @@ product_page_extractor_logger = log.get_logger(__name__)
 
 class extract_page_html:
 
-    def __init__(self, product_link, review_xpath_1, review_xpath_2, review_xpath_3, chrome_driver):
+    def __init__(self, product_link, review_xpath_1, review_xpath_2, review_xpath_3, headers, chrome_driver):
         self.delay = 5
         self.timeout = 30
         self.product_link = product_link
         self.review_xpath_1 = review_xpath_1
         self.review_xpath_2 = review_xpath_2
         self.review_xpath_3 = review_xpath_3
+        self.headers = headers
         self.chrome_driver = chrome_driver
 
     def open_product_link(self):
@@ -48,7 +49,7 @@ class extract_page_html:
                 get_libraries.time.sleep(self.delay)
                 review_element.click()
                 get_libraries.time.sleep(self.delay)
-            except:
+            except Exception:
                 product_page_extractor_logger.warning(f"could not find product page review xpath : {xpath}")
 
     def get_page_source(self):
@@ -62,21 +63,25 @@ class extract_page_html:
         return domain_name
 
     def get_deal_link(self):
-        gotodeal_element = get_libraries.WebDriverWait(self.chrome_driver, self.delay).until(
-            get_libraries.expected_conditions.presence_of_element_located(
-                (get_libraries.By.XPATH, "//div[@class='gotodeal']/a")
+        deal_link = None
+        gotodeal_xpath = "//div[@class='gotodeal']/a"
+        try:
+            gotodeal_element = get_libraries.WebDriverWait(self.chrome_driver, self.delay).until(
+                get_libraries.expected_conditions.presence_of_element_located(
+                    (get_libraries.By.XPATH, gotodeal_xpath)
+                )
             )
-        )
-        self.scroll_element_into_center(gotodeal_element)
-        get_libraries.time.sleep(self.delay)
-        deal_link = gotodeal_element.get_attribute('href')
+            self.scroll_element_into_center(gotodeal_element)
+            get_libraries.time.sleep(self.delay)
+            deal_link = gotodeal_element.get_attribute('href')
+        except Exception:
+            product_page_extractor_logger.warning(f"could not find ozbargain 'gotodeal' xpath : '{gotodeal_xpath}'")
         return deal_link
 
     def get_redirect_link(self, deal_link):
-        user_agent = self.chrome_driver.execute_script("return navigator.userAgent;")
-        request = get_libraries.Request(deal_link, headers={'User-Agent': user_agent})
-        response = get_libraries.urlopen(request)
-        redirect_link = response.geturl()
+        request = get_libraries.requests
+        response = request.get(deal_link, headers = self.headers)
+        redirect_link = response.url
         return redirect_link
 
     def insert_source_url_into_html(self, redirect_link, html):
@@ -88,23 +93,24 @@ class extract_page_html:
         domain_name = self.get_domain_name()
         if domain_name == 'ozbargain':
             deal_link = self.get_deal_link()
-            redirect_link = self.get_redirect_link(deal_link)
-            html = self.insert_source_url_into_html(redirect_link, html)
+            if deal_link:
+                redirect_link = self.get_redirect_link(deal_link)
+                html = self.insert_source_url_into_html(redirect_link, html)
         return html
 
     def get_html(self):
         self.open_product_link()
-        product_page_extractor_logger.info(f"product link has been opened from method : '{self.open_product_link.__qualname__}'")
+        product_page_extractor_logger.info(f"product link opened from method : '{self.open_product_link.__qualname__}'")
         self.scroll_to_end_of_page()
-        product_page_extractor_logger.info(f"method : '{self.scroll_to_end_of_page.__qualname__}' has been called")
+        product_page_extractor_logger.info(f"method : '{self.scroll_to_end_of_page.__qualname__}' called")
         self.click_review_xpath(self.review_xpath_1)
-        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' has been called for review_xpath_1 : {self.review_xpath_1}")
+        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' called for review_xpath_1 : '{self.review_xpath_1}'")
         self.click_review_xpath(self.review_xpath_2)
-        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' has been called for review_xpath_2 : {self.review_xpath_2}")
+        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' called for review_xpath_2 : '{self.review_xpath_2}'")
         self.click_review_xpath(self.review_xpath_3)
-        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' has been called for review_xpath_3 : {self.review_xpath_3}")
+        product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' called for review_xpath_3 : '{self.review_xpath_3}'")
         html = self.get_page_source()
-        product_page_extractor_logger.info(f"product page source has been set from method : '{self.get_page_source.__qualname__}'")
+        product_page_extractor_logger.info(f"product page source set from method : '{self.get_page_source.__qualname__}'")
         html = self.process_ozbargain_product(html)
-        product_page_extractor_logger.info(f"ozbargain product page source has been set from method : '{self.process_ozbargain_product.__qualname__}'")
+        product_page_extractor_logger.info(f"ozbargain product page source set from method : '{self.process_ozbargain_product.__qualname__}'")
         return html

@@ -1,5 +1,4 @@
 url,url_xpath,load_more_products,plp_download_number,review_xpath_1,review_xpath_2,review_xpath_3
 
-https://www.nike.com/au/w/mens-sale-shoes-3yaepz4i4r4znik1zy7ok,//a[@class='product-card__link-overlay'],0,2,//summary[@class='css-ov1ktg'](1),//label[@class='css-15juft3'](1),//span[@class='TT3ShowMoreText' and text()='Load More'](2)
 https://www.groupon.com.au/coupons?topcategory=travel&category=tour-travel,//div[@class='cui-content']/a[1],0,1,//a[@class='all-tips-link'](1),,
 https://www.curtainwonderland.com.au/categories/curtains/,//div[@class='item']/a,0,1,//*[@id='tablist1-tab7'](1),,

@@ -10,7 +10,6 @@ from bs4 import BeautifulSoup
 
 from tldextract import extract
 from urllib.parse import urlparse, urljoin
-from urllib.request import Request, urlopen
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
