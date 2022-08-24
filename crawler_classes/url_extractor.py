@@ -78,7 +78,7 @@ class extract_source_links_and_html:
     def get_links_and_html(self):
         try:
             self.open_source_link()
-            url_extractor_logger.info(f"source link : '{self.source_link}' opened from method : '{self.open_source_link.__qualname__}'")
+            url_extractor_logger.debug(f"source link : '{self.source_link}' opened from method : '{self.open_source_link.__qualname__}'")
             self.end_of_page()
             url_extractor_logger.info(f"scrolled to end of page from method : '{self.end_of_page.__qualname__}'")
             elements = self.get_elements()

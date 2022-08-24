@@ -22,8 +22,13 @@ def process_product_listing_page(product_listing_page_info, chrome_driver_info):
     load_more_products = product_listing_page_info[2]
     plp_download_number = product_listing_page_info[3]
     chrome_driver = chrome_driver_info[0]
-    products = url_extractor.extract_source_links_and_html(product_listing_page_link, product_listing_page_link_xpath,
-                                                           load_more_products, plp_download_number, chrome_driver)
+    products = url_extractor.extract_source_links_and_html(
+        product_listing_page_link,
+        product_listing_page_link_xpath,
+        load_more_products,
+        plp_download_number,
+        chrome_driver
+    )
     product_links, product_listing_page_source = products.get_links_and_html()
     return product_links, product_listing_page_source
 
@@ -35,11 +40,21 @@ def process_product_listing_page_source_and_product_links(product_listing_page_i
     review_xpath_2 = product_page_info[2]
     review_xpath_3 = product_page_info[3]
     chrome_driver = chrome_driver_info[0]
-    local_files = product_page_storer.store_product_pages(config.download_folder_name, config.specials_file_name,
-                                                          config.source_file_name, config.find_cheap_url)
-    product_page_save_location = local_files.save_html_files(product_listing_page_link, product_listing_page_source,
-                                                             product_links, review_xpath_1, review_xpath_2, review_xpath_3,
-                                                             chrome_driver)
+    local_files = product_page_storer.store_product_pages(
+        config.download_folder_name,
+        config.specials_file_name,
+        config.source_file_name,
+        config.saved_websites_find_cheap_url
+    )
+    product_page_save_location = local_files.save_html_files(
+        product_listing_page_link,
+        product_listing_page_source,
+        product_links,
+        review_xpath_1,
+        review_xpath_2,
+        review_xpath_3,
+        chrome_driver
+    )
     status = local_files.get_status()
     return product_page_save_location, status
 
