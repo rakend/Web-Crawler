@@ -1,0 +1,77 @@
+2022-08-24 10:17:05,047 - __main__ - DEBUG - start of program
+2022-08-24 10:17:05,048 - __main__ - DEBUG - 'statistics' value set to : []
+2022-08-24 10:17:07,311 - __main__ - INFO - opened csv file from function : 'open'
+2022-08-24 10:17:07,311 - __main__ - DEBUG - csv file contents stored in 'web_list' as list of dictionaries
+2022-08-24 10:17:07,312 - __main__ - INFO - 'chrome_driver' set from method : 'chrome_manager.get_chrome_driver'
+2022-08-24 10:17:07,312 - __main__ - DEBUG - 'row' value set to : '{'url': 'https://www.curtainwonderland.com.au/categories/curtains/', 'url_xpath': "//div[@class='item']/a", 'load_more_products': '0', 'plp_download_number': '1', 'review_xpath_1': "//*[@id='tablist1-tab7'](1)", 'review_xpath_2': '', 'review_xpath_3': ''}'
+2022-08-24 10:17:07,312 - __main__ - DEBUG - made tuple of 'product_listing_page_info' and 'chrome_driver_info'
+2022-08-24 10:17:14,272 - crawler_classes.url_extractor - INFO - source link : 'https://www.curtainwonderland.com.au/categories/curtains/' opened from method : 'extract_source_links_and_html.open_source_link'
+2022-08-24 10:17:14,277 - crawler_classes.url_extractor - INFO - scrolled to end of page from method : 'extract_source_links_and_html.end_of_page'
+2022-08-24 10:17:14,288 - crawler_classes.url_extractor - INFO - product link elements returned from method : 'extract_source_links_and_html.get_elements'
+2022-08-24 10:17:14,380 - crawler_classes.url_extractor - INFO - product links returned from method : 'extract_source_links_and_html.get_links_from_elements'
+2022-08-24 10:17:14,386 - crawler_classes.url_extractor - INFO - product_links sliced to plp_download_number : '1' from method : 'extract_source_links_and_html.get_links_to_download'
+2022-08-24 10:17:19,395 - crawler_classes.url_extractor - INFO - source link page source returned from method : 'extract_source_links_and_html.get_page_source'
+2022-08-24 10:17:19,395 - __main__ - INFO - values returned from function : 'process_product_listing_page'
+2022-08-24 10:17:19,395 - __main__ - DEBUG - made tuple of 'product_listing_page_info' and 'product_page_info'
+2022-08-24 10:17:19,398 - crawler_classes.product_page_storer - INFO - domain name set to : 'curtainwonderland' from method : 'store_product_pages.set_domain_name'
+2022-08-24 10:17:19,398 - crawler_classes.product_page_storer - INFO - category name set to : 'curtains' from method : 'store_product_pages.set_category_name'
+2022-08-24 10:17:19,398 - crawler_classes.product_page_storer - INFO - review xpath set to : '//*[@id='tablist1-tab7'](1)', '', '' from method : 'store_product_pages.set_review_xpath'
+2022-08-24 10:17:19,398 - crawler_classes.product_page_storer - INFO - html base tag set to : '<base href="https://www.curtainwonderland.com.au"/>' from method : 'store_product_pages.set_html_base_tag'
+2022-08-24 10:17:19,398 - crawler_classes.product_page_storer - INFO - chrome_driver set from method : 'store_product_pages.set_chrome_driver'
+2022-08-24 10:17:19,402 - crawler_classes.product_page_storer - INFO - request header set from method : 'store_product_pages.set_request_headers'
+2022-08-24 10:17:19,448 - crawler_classes.product_page_storer - ERROR - HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+Traceback (most recent call last):
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Program Files\Python310\Lib\ssl.py", line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Program Files\Python310\Lib\ssl.py", line 1071, in _create
+    self.do_handshake()
+  File "C:\Program Files\Python310\Lib\ssl.py", line 1342, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\urllib3\util\retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\python-selenium\Web Crawler\crawler_classes\product_page_storer.py", line 338, in save_html_files
+    plp_flag = self.check_url_status_code(product_listing_page_link)
+  File "C:\python-selenium\Web Crawler\crawler_classes\product_page_storer.py", line 311, in check_url_status_code
+    response = request.get(url, headers = self.headers)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\chouh\AppData\Roaming\Python\Python310\site-packages\requests\adapters.py", line 563, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='www.curtainwonderland.com.au', port=443): Max retries exceeded with url: /categories/curtains/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
+2022-08-24 10:17:19,453 - __main__ - DEBUG - 'status' value set to : '{'domain_name': 'curtainwonderland', 'category_name': 'curtains', 'plp_status_code': 'None', 'total_pages': '0', 'new_pages': '0', 'updated_pages': '0', 'failed_pages': '0'}'
+2022-08-24 10:17:19,453 - __main__ - INFO - values returned from function : 'process_product_listing_page_source_and_product_links'
+2022-08-24 10:17:19,453 - __main__ - DEBUG - 'status' appended to 'statistics'
+2022-08-24 10:17:19,453 - __main__ - DEBUG - 'row' value set to : '{'url': 'https://www.groupon.com.au/coupons?topcategory=travel&category=tour-travel', 'url_xpath': "//div[@class='cui-content']/a[1]", 'load_more_products': '0', 'plp_download_number': '1', 'review_xpath_1': "//a[@class='all-tips-link'](1)", 'review_xpath_2': '', 'review_xpath_3': ''}'
+2022-08-24 10:17:19,453 - __main__ - DEBUG - made tuple of 'product_listing_page_info' and 'chrome_driver_info'
