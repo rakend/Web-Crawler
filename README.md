@@ -8,7 +8,7 @@ Sample error example.
 HTTPSConnectionPool(host='www.somewebsite.com', port=443): Max retries exceeded with url: /url-path/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)')))
 ```
 
-If encountered with an error as shown above or similar from the log files. 
+If encountered with an error as shown above or similar from log files. 
 This relates to **SSLCertVerificationError** and can be fixed. 
 
 Steps to resolve this issue.
@@ -34,7 +34,7 @@ Steps to resolve this issue.
   print(path)
   ```
 
-- Now open the **cacert.pem** in notepad from ```path``` and add every downloaded certificate contents at the end.\
+- Now open **cacert.pem** in notepad located from ```path``` and add every downloaded certificate contents at the end.\
   The chain of certificates should look similar to the snippet below.
   ```notepad
   -----BEGIN CERTIFICATE-----

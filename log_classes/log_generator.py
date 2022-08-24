@@ -66,7 +66,9 @@ class generate_log:
         self.log_save_location = self.get_log_save_location()
 
     def set_log_formatter(self):
-        self.log_formatter = get_libraries.logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        self.log_formatter = get_libraries.logging.Formatter(
+            '[%(asctime)s] {%(name)s:%(lineno)d} %(levelname)s - %(message)s', '%d-%m-%Y %H:%M:%S'
+        )
 
     def join_path_components(self, component_one, component_two):
         combined_component = get_libraries.os.path.join(component_one, component_two)
