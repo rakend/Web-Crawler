@@ -6,11 +6,11 @@ product_page_storer_logger = log.get_logger(__name__)
 
 class store_product_pages:
 
-    def __init__(self, download_folder_name, specials_file_name, source_file_name, find_cheap_url):
+    def __init__(self, download_folder_name, specials_file_name, source_file_name, saved_websites_find_cheap_url):
         self.download_folder_name = download_folder_name
         self.specials_file_name = specials_file_name
         self.source_file_name = source_file_name
-        self.find_cheap_url = find_cheap_url
+        self.saved_websites_find_cheap_url = saved_websites_find_cheap_url
         self.initialize_domain_name()
         self.initialize_category_name()
         self.initialize_review_xpath()
@@ -275,7 +275,7 @@ class store_product_pages:
         return combined_url
 
     def create_specials_url(self, domain_name, suffix_name, html_file_name):
-        specials_url = self.join_url_components(self.find_cheap_url, domain_name, '/')
+        specials_url = self.join_url_components(self.saved_websites_find_cheap_url, domain_name, '/')
         specials_url = self.join_url_components(specials_url, suffix_name, '/')
         specials_url = self.join_url_components(specials_url, html_file_name)
         return specials_url

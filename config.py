@@ -20,11 +20,11 @@ download_folder_name = 'savedwebsites'
 specials_file_name = 'specials.html'
 source_file_name = 'sales-original-source.html'
 
-# find cheap url
-find_cheap_url = 'http://savedwebsites.findcheap.com.au/'
+# savedwebsites find cheap url
+saved_websites_find_cheap_url = 'http://savedwebsites.findcheap.com.au/'
 
 # ftp login details
-ftp_server = '192.168.20.75'
+ftp_server = '192.168.20.106'
 ftp_user = 'savedwebsites@findcheap.com.au'
 ftp_password = '12345'
 
