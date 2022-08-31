@@ -6,8 +6,9 @@ product_page_extractor_logger = log.get_logger(__name__)
 class extract_page_html:
 
     def __init__(self, product_link, review_xpath_1, review_xpath_2, review_xpath_3, headers, chrome_driver):
-        self.delay = 5
         self.timeout = 30
+        self.long_delay = 5
+        self.short_delay = 2
         self.product_link = product_link
         self.review_xpath_1 = review_xpath_1
         self.review_xpath_2 = review_xpath_2
@@ -18,11 +19,11 @@ class extract_page_html:
     def open_product_link(self):
         self.chrome_driver.set_page_load_timeout(self.timeout)
         self.chrome_driver.get(self.product_link)
-        get_libraries.time.sleep(self.delay)
+        get_libraries.time.sleep(self.short_delay)
 
     def scroll_to_end_of_page(self):
         self.chrome_driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        get_libraries.time.sleep(self.delay)
+        get_libraries.time.sleep(self.short_delay)
 
     def separate_xpath_and_clicks(self, xpath):
         splitat = len(xpath) - 3
@@ -39,22 +40,21 @@ class extract_page_html:
         xpath, clicks = self.separate_xpath_and_clicks(xpath)
         for max_clicks in range(clicks):
             try:
-                review_element = get_libraries.WebDriverWait(self.chrome_driver, self.delay).until(
+                review_element = get_libraries.WebDriverWait(self.chrome_driver, self.long_delay).until(
                     get_libraries.expected_conditions.presence_of_element_located(
                         (get_libraries.By.XPATH, xpath)
                     )
                 )
-                get_libraries.time.sleep(self.delay)
                 self.scroll_element_into_center(review_element)
-                get_libraries.time.sleep(self.delay)
+                get_libraries.time.sleep(self.short_delay)
                 review_element.click()
-                get_libraries.time.sleep(self.delay)
+                get_libraries.time.sleep(self.short_delay)
             except Exception:
                 product_page_extractor_logger.warning(f"could not find product page review xpath : {xpath}")
 
     def get_page_source(self):
         html = self.chrome_driver.page_source
-        get_libraries.time.sleep(self.delay)
+        get_libraries.time.sleep(self.short_delay)
         return html
 
     def get_domain_name(self):
@@ -66,13 +66,13 @@ class extract_page_html:
         deal_link = None
         gotodeal_xpath = "//div[@class='gotodeal']/a"
         try:
-            gotodeal_element = get_libraries.WebDriverWait(self.chrome_driver, self.delay).until(
+            gotodeal_element = get_libraries.WebDriverWait(self.chrome_driver, self.long_delay).until(
                 get_libraries.expected_conditions.presence_of_element_located(
                     (get_libraries.By.XPATH, gotodeal_xpath)
                 )
             )
             self.scroll_element_into_center(gotodeal_element)
-            get_libraries.time.sleep(self.delay)
+            get_libraries.time.sleep(self.short_delay)
             deal_link = gotodeal_element.get_attribute('href')
         except Exception:
             product_page_extractor_logger.warning(f"could not find ozbargain 'gotodeal' xpath : '{gotodeal_xpath}'")
