@@ -63,6 +63,9 @@ def process_report(statistics):
     report.make_report()
 
 def main():
+    """
+        This is main function to this application.
+    """
     main_logger.debug(f"start of program")
     statistics = []
     main_logger.debug(f"'statistics' value set to : {statistics}")
