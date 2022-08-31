@@ -3,7 +3,14 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\webpages_to_crawl.csv">
+        <entry key="\CSVs\single_domain_webpages_to_crawl.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\CSVs\webpages_to_crawl.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
