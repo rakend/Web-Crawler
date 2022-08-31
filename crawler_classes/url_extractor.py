@@ -6,8 +6,9 @@ url_extractor_logger = log.get_logger(__name__)
 class extract_source_links_and_html:
 
     def __init__(self, source_link, xpath, load_more_products, plp_download_number, chrome_driver):
-        self.delay = 5
         self.timeout = 30
+        self.long_delay = 5
+        self.short_delay = 2
         self.source_link = source_link
         self.xpath = xpath
         self.load_more_products = load_more_products
@@ -17,7 +18,7 @@ class extract_source_links_and_html:
     def open_source_link(self):
         self.chrome_driver.set_page_load_timeout(self.timeout)
         self.chrome_driver.get(self.source_link)
-        get_libraries.time.sleep(self.delay)
+        get_libraries.time.sleep(self.short_delay)
 
     def set_load_more_products_value(self):
         try:
@@ -33,7 +34,7 @@ class extract_source_links_and_html:
         while(match == False and end_of_page_count < self.load_more_products):
             end_of_page_count = end_of_page_count + 1
             self.chrome_driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            get_libraries.time.sleep(self.delay)
+            get_libraries.time.sleep(self.long_delay)
             last_count = len_of_page
             len_of_page = self.chrome_driver.execute_script("var lenOfPage=document.body.scrollHeight;return lenOfPage;")
             if last_count == len_of_page:
@@ -42,7 +43,7 @@ class extract_source_links_and_html:
     def get_elements(self):
         elements = []
         try:
-            elements = get_libraries.WebDriverWait(self.chrome_driver, self.delay).until(
+            elements = get_libraries.WebDriverWait(self.chrome_driver, self.long_delay).until(
                 get_libraries.expected_conditions.presence_of_all_elements_located((get_libraries.By.XPATH, self.xpath))
             )
         except:
@@ -72,7 +73,7 @@ class extract_source_links_and_html:
 
     def get_page_source(self):
         html = self.chrome_driver.page_source
-        get_libraries.time.sleep(self.delay)
+        get_libraries.time.sleep(self.short_delay)
         return html
 
     def get_links_and_html(self):

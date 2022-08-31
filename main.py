@@ -66,9 +66,10 @@ def main():
     main_logger.debug(f"start of program")
     statistics = []
     main_logger.debug(f"'statistics' value set to : {statistics}")
-    root_path = os.path.dirname(os.path.realpath(__file__))
-    csv_path = os.path.join(root_path, config.csv_file_name)
-    with open(csv_path) as csv_file, browser_manager.chrome_manager() as chrome_handler:
+    project_folder_path = os.path.dirname(os.path.realpath(__file__))
+    csv_folder_path = os.path.join(project_folder_path, config.csv_folder_name)
+    csv_file_path = os.path.join(csv_folder_path, config.csv_file_name)
+    with open(csv_file_path) as csv_file, browser_manager.chrome_manager() as chrome_handler:
         csvReader = csv.DictReader(csv_file)
         main_logger.info(f"opened csv file from function : '{open.__qualname__}'")
         web_list = [dict(row) for row in csvReader]
@@ -107,5 +108,5 @@ def main():
         main_logger.info(f"report generated from function : '{process_report.__qualname__}'")
         main_logger.debug(f"end of program")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
