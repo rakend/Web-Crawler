@@ -21,8 +21,8 @@ class extract_page_html:
         self.chrome_driver.get(self.product_link)
         get_libraries.time.sleep(self.short_delay)
 
-    def scroll_to_end_of_page(self):
-        self.chrome_driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    def end_of_page(self):
+        self.chrome_driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
         get_libraries.time.sleep(self.short_delay)
 
     def separate_xpath_and_clicks(self, xpath):
@@ -31,7 +31,7 @@ class extract_page_html:
         clicks = int(clicks)
         return xpath, clicks
 
-    def scroll_element_into_center(self, element):
+    def scroll_element_to_center(self, element):
         self.chrome_driver.execute_script("arguments[0].scrollIntoView({'block':'center','inline':'center'})", element)
 
     def click_review_xpath(self, xpath):
@@ -45,7 +45,7 @@ class extract_page_html:
                         (get_libraries.By.XPATH, xpath)
                     )
                 )
-                self.scroll_element_into_center(review_element)
+                self.scroll_element_to_center(review_element)
                 get_libraries.time.sleep(self.short_delay)
                 review_element.click()
                 get_libraries.time.sleep(self.short_delay)
@@ -71,7 +71,7 @@ class extract_page_html:
                     (get_libraries.By.XPATH, gotodeal_xpath)
                 )
             )
-            self.scroll_element_into_center(gotodeal_element)
+            self.scroll_element_to_center(gotodeal_element)
             get_libraries.time.sleep(self.short_delay)
             deal_link = gotodeal_element.get_attribute('href')
         except Exception:
@@ -101,8 +101,8 @@ class extract_page_html:
     def get_html(self):
         self.open_product_link()
         product_page_extractor_logger.info(f"product link opened from method : '{self.open_product_link.__qualname__}'")
-        self.scroll_to_end_of_page()
-        product_page_extractor_logger.info(f"method : '{self.scroll_to_end_of_page.__qualname__}' called")
+        self.end_of_page()
+        product_page_extractor_logger.info(f"method : '{self.end_of_page.__qualname__}' called")
         self.click_review_xpath(self.review_xpath_1)
         product_page_extractor_logger.info(f"method : '{self.click_review_xpath.__qualname__}' called for review_xpath_1 : '{self.review_xpath_1}'")
         self.click_review_xpath(self.review_xpath_2)
