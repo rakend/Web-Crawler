@@ -352,7 +352,6 @@ class store_product_pages:
             )
             print()
             self.delay_console_display()
-            self.delay_console_display()
             self.status['total_pages'] = str(len(product_links))
             print(f"Total number of links to download : {self.status['total_pages']}")
             print()
@@ -379,7 +378,6 @@ class store_product_pages:
                 finally:
                     print()
                     self.delay_console_display()
-            self.delay_console_display()
             print('Loop thorugh all links completed')
             self.save_specials_file()
             self.delay_console_display()

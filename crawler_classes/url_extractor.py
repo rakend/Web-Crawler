@@ -23,22 +23,22 @@ class extract_source_links_and_html:
     def set_load_more_products_value(self):
         try:
             self.load_more_products = int(self.load_more_products)
-        except:
+            if self.load_more_products < 0:
+                raise Exception
+        except Exception:
             self.load_more_products = 0
 
     def end_of_page(self):
         self.set_load_more_products_value()
-        match = False
-        end_of_page_count = 0
-        len_of_page = self.chrome_driver.execute_script("var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-        while(match == False and end_of_page_count < self.load_more_products):
-            end_of_page_count = end_of_page_count + 1
-            self.chrome_driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            get_libraries.time.sleep(self.long_delay)
-            last_count = len_of_page
-            len_of_page = self.chrome_driver.execute_script("var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-            if last_count == len_of_page:
-                match = True
+        if self.load_more_products:
+            move_factor = 500
+            for move_number in range(self.load_more_products):
+                len_of_page = self.chrome_driver.execute_script('var lenOfPage=document.body.scrollHeight;return lenOfPage;')
+                scroll_location = (move_number + 1) * move_factor
+                self.chrome_driver.execute_script(f"window.scrollTo(0, {scroll_location});")
+                get_libraries.time.sleep(self.short_delay)
+                if scroll_location >= len_of_page:
+                    break
 
     def get_elements(self):
         elements = []

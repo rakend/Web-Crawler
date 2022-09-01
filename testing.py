@@ -26,4 +26,3 @@ headers = {
 
 response = requests.get('https://www.mwave.com.au/desktop-computers/mwave-computers', headers=headers)
 print(response)
-print(response.headers)
